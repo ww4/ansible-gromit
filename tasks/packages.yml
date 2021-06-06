@@ -40,5 +40,5 @@
 
 - name: Install snaps
   snap: name={{item}}
-    with_items:
-      - authy
+  with_items:
+    - authy
