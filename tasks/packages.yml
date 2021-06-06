@@ -1,5 +1,5 @@
 - name: Install apt packages
-  apt: name: "{{item}}"
+  apt: name={{item}}
   with_items:
     - htop
     - tmux
@@ -39,6 +39,6 @@
     - xbindkeys
 
 - name: Install snaps
-  snap: name: "{{item}}"
+  snap: name={{item}}
     with_items:
       - authy
