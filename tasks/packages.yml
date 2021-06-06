@@ -1,50 +1,45 @@
 - name: Install apt packages
-  apt: 
-    name=[
-     'htop',
-     'tmux',
-     'google-chrome-stable',
-     'virtualbox-qt',
-     'gimp',
-     'gparted',
-     'inkscape',
-     'solaar',
-     'audacity',
-     'byobu',
-     'cmus',
-     'conky',
-     'docker-ce',
-     'git',
-     'filezilla',
-     'gpg',
-     'insync',
-     'iotop',
-     'jellyfin',
-     'mergerfs',
-     'mmv',
-     'mpv',
-     'ncdu',
-     'nemo',
-     'nomachine',
-     'openssh-server',
-     'restic',
-     'samba',
-     'speedtest-cli',
-     'steam-launcher',
-     'tailscale',
-     'testdisk',
-     'todoist',
-     'unison',
-     'wireguard',
-     'xbindkeys'
-     ]
+  apt:  
+    name: [ 
+    'htop',
+    'tmux',
+    'google-chrome-stable',
+    'virtualbox-qt',
+    'gimp',
+    'gparted',
+    'inkscape',
+    'solaar',
+    'audacity',
+    'byobu',
+    'cmus',
+    'conky',
+    'docker-ce',
+    'git',
+    'filezilla',
+    'gpg',
+    'insync',
+    'iotop',
+    'jellyfin',
+    'mergerfs',
+    'mmv',
+    'mpv',
+    'ncdu',
+    'nemo',
+    'nomachine',
+    'openssh-server',
+    'restic',
+    'samba',
+    'speedtest-cli',
+    'steam-launcher',
+    'tailscale',
+    'testdisk',
+    'todoist',
+    'unison',
+    'wireguard',
+    'xbindkeys'
+    ]
 - name: Install snaps
-  snap: name=[
+  snap:
+    name: [
     'authy'
     ]
-
-#[DEPRECATION WARNING]: Invoking "apt" only once while using a loop via squash_actions is deprecated. Instead of using a loop to supply multiple items and specifying `name: "{{item}}"`, please use `name: 
-#['htop', 'tmux', 'google-chrome-stable', 'virtualbox-qt', 'gimp', 'gparted', 'inkscape', 'solaar', 'audacity', 'byobu', 'cmus', 'conky', 'docker-ce', 'git', 'filezilla', 'gpg', 'insync', 'iotop', 'jellyfin', 
-#'mergerfs', 'mmv', 'mpv', 'ncdu', 'nemo', 'nomachine', 'openssh-server', 'restic', 'samba', 'speedtest-cli', 'steam-launcher', 'tailscale', 'testdisk', 'todoist', 'unison', 'wireguard', 'xbindkeys']` and remove
-# the loop. This feature will be removed in version 2.11. Deprecation warnings can be disabled by setting deprecation_warnings=False in ansible.cfg.
-#ok: [localhost] => (item=['htop', 'tmux', 'google-chrome-stable', 'virtualbox-qt', 'gimp', 'gparted', 'inkscape', 'solaar', 'audacity', 'byobu', 'cmus', 'conky', 'docker-ce', 'git', 'filezilla', 'gpg', 'insync', 'iotop', 'jellyfin', 'mergerfs', 'mmv', 'mpv', 'ncdu', 'nemo', 'nomachine', 'openssh-server', 'restic', 'samba', 'speedtest-cli', 'steam-launcher', 'tailscale', 'testdisk', 'todoist', 'unison', 'wireguard', 'xbindkeys'])
