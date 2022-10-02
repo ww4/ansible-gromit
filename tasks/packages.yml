@@ -19,14 +19,6 @@
     'mmv',
     'mpv',
     'ncdu',
-    'nemo',
     'openssh-server',
     'restic',
-    'samba',
-    'speedtest-cli',
-    'steam-launcher',
-    'tailscale',
-    'testdisk',
-    'todoist',
-    'xbindkeys'
     ]
