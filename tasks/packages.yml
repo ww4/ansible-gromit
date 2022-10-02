@@ -13,16 +13,13 @@
     'cmus',
     'conky',
     'git',
-    'filezilla',
     'gpg',
     'iotop',
-    'jellyfin',
     'mergerfs',
     'mmv',
     'mpv',
     'ncdu',
     'nemo',
-    'nomachine',
     'openssh-server',
     'restic',
     'samba',
@@ -31,12 +28,5 @@
     'tailscale',
     'testdisk',
     'todoist',
-    'unison',
-    'wireguard',
     'xbindkeys'
-    ]
-- name: Install snaps
-  snap:
-    name: [
-    'authy'
     ]
