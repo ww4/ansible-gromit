@@ -1,4 +1,4 @@
-Notes on getting server setup
+# Notes on getting server setup
 
 Following this guide: https://opensource.com/article/18/3/manage-workstation-ansible
 
@@ -37,5 +37,12 @@ Playbook notes:
  
  
  How quick can I get a system ready for Ansible provisioning?
-  - install from livedisk
-  - 
+  - install system from livedisk
+  - install Tailscale
+  - install Ansible
+  - add tailscale IP to ansible hosts
+  - run ansible
+
+
+Loaded Git repo into work VSCode editor
+Split packages list into smaller bites

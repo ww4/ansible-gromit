@@ -1,24 +1,39 @@
-- name: Install apt packages
+
+- name: Installing, VirtualBox
   apt:  
-    name: [ 
-    'htop',
-    'tmux',
-    'virtualbox-qt',
-    'gimp',
-    'gparted',
-    'inkscape',
-    'solaar',
-    'audacity',
-    'byobu',
-    'cmus',
-    'conky',
-    'git',
-    'gpg',
-    'iotop',
-    'mergerfs',
-    'mmv',
-    'mpv',
-    'ncdu',
-    'openssh-server',
-    'restic',
+    name: virtualbox-qt
+    state: latest
+
+- name: Installing, GUI apps
+  apt:
+    name: [
+     'gparted',
+     'inkscape',
+     'solaar',
+     'audacity',
+     'gimp',
+     'conky',
     ]
+    state: latest
+
+- name: Installing, CLI apps
+  apt:
+    name: [
+     'byobu',
+     'cmus',
+     'iotop',
+     'mmv',
+     'mpv',
+     'ncdu',
+     'htop',
+     'tmux',
+    ]
+    state: latest
+
+- name: Installing, Filesystems & backups
+  apt:
+    name: [
+     'mergerfs',
+     'restic',
+    ]
+    state: latest
