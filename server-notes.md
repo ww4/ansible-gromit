@@ -46,3 +46,7 @@ Playbook notes:
 
 Loaded Git repo into work VSCode editor
 Split packages list into smaller bites
+
+This looks useful. https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04
+
+following above tutorial, added docker.yml to tasks
