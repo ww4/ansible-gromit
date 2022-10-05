@@ -1,4 +1,4 @@
----
+
 - name: Docker - Install aptitude
   apt:
     name: aptitude
