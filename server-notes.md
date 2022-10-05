@@ -50,3 +50,7 @@ cloned github ansible-gromit repo onto Bub
 updated Vagrantfile to use repo, test run, "no hosts matched"
 managed to run ansible against gromit using -K for passwd and -i specify hosts file
 
+
+This looks useful. https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04
+
+following above tutorial, added docker.yml to tasks

@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   become: true
   pre_tasks:
     - name: update repositories
@@ -6,6 +6,7 @@
       changed_when: False
 
   tasks:
+    - import_tasks: tasks/docker.yml
     - import_tasks: tasks/users.yml
     - import_tasks: tasks/packages.yml
 
