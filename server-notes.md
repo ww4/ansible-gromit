@@ -46,3 +46,7 @@ Playbook notes:
 
 Loaded Git repo into work VSCode editor
 Split packages list into smaller bites
+cloned github ansible-gromit repo onto Bub
+updated Vagrantfile to use repo, test run, "no hosts matched"
+managed to run ansible against gromit using -K for passwd and -i specify hosts file
+
