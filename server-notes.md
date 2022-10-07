@@ -54,3 +54,4 @@ managed to run ansible against gromit using -K for passwd and -i specify hosts f
 This looks useful. https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04
 
 following above tutorial, added docker.yml to tasks
+Set up Jellyfin docker, need to set up filesystem before testing

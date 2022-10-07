@@ -1,10 +1,10 @@
 
-- name: Installing, VirtualBox
+- name: Packages - VirtualBox
   apt:  
     name: virtualbox-qt
     state: latest
 
-- name: Installing, GUI apps
+- name: Packages - GUI apps
   apt:
     name: [
      'gparted',
@@ -16,7 +16,7 @@
     ]
     state: latest
 
-- name: Installing, CLI apps
+- name: Packages - CLI apps
   apt:
     name: [
      'byobu',
@@ -30,7 +30,7 @@
     ]
     state: latest
 
-- name: Installing, Filesystems & backups
+- name: Packages - Filesystems & backups
   apt:
     name: [
      'mergerfs',
