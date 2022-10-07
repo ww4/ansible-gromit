@@ -30,10 +30,24 @@
     ]
     state: latest
 
-- name: Packages - Filesystems & backups
+- name: Packages - set up MergerFS
   apt:
     name: [
      'mergerfs',
+    ]
+    state: latest
+  file:
+    path: /mnt/
+    state: directory
+    mode: 0755
+    with_items:
+      - fusion
+      - drive01
+
+
+name: Packages - set up Restic
+  apt:
+    name: [
      'restic',
     ]
     state: latest
