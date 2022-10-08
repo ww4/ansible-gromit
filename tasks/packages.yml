@@ -30,7 +30,7 @@
     ]
     state: latest
 
-- name: Mountpoints, fstab for disks
+- name: Mountpoints for disks
   file:
     path: /mnt/
     state: directory
@@ -44,6 +44,7 @@
       - disk5
       - disk6
 
+- name: Fstab for disks
   ansible.posix.mount:
     path: /mnt/disk1
     src: UUID=4731e760-fe51-48ef-8e35-5b764b84c249
