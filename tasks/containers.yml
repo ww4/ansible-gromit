@@ -4,16 +4,16 @@
       name: jellyfin
       state: started
       env:
-        - PUID=1000
-        - PGID=1000
-        - TZ=America/New_York
+        - PUID: 1000
+        - PGID: 1000
+        - TZ: America/New_York
       volumes:
-        - /mnt/fusion/config:/config
-        - /mnt/fusion/Movies:/data/movies
-        - /mnt/fusion/TV_Shows:/data/tvshows
+        - /mnt/fusion/config: /config
+        - /mnt/fusion/Movies: /data/movies
+        - /mnt/fusion/TV_Shows: /data/tvshows
       ports:
-        - 8096:8096
-        - 8920:8920
-        - 7359:7359
-        - 1900:1900
+        - "8096:8096"
+        - "8920:8920"
+        - "7359:7359"
+        - "1900:1900"
       restart: unless-stopped
