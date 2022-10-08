@@ -99,8 +99,7 @@
     opts: defaults,category.create=mfs,nonempty,allow_other,use_ino,cache.files=off,moveonenospc=true,dropcacheonclose=true,minfreespace=200G,fsname=mergerfs
     state: present
 
-
-name: Packages - set up Restic
+- name: Packages - set up Restic
   apt:
     name: [
      'restic',
