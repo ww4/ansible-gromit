@@ -32,17 +32,19 @@
 
 - name: Mountpoints for disks
   file:
-    path: /mnt/
+    path: "{{ item }}"
     state: directory
-    mode: 0755
-    with_items:
-      - fusion
-      - disk1
-      - disk2
-      - disk3
-      - disk4
-      - disk5
-      - disk6
+    owner: chris
+    group: chris
+    mode: 0775
+  loop:
+      - /mnt/fusion
+      - /mnt/disk1
+      - /mnt/disk2
+      - /mnt/disk3
+      - /mnt/disk4
+      - /mnt/disk5
+      - /mnt/disk6
 
 - name: Fstab for disk1
   ansible.posix.mount:
