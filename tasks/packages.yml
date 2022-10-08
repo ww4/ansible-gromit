@@ -51,35 +51,35 @@
     opts: defaults
     state: present
 
-ansible.posix.mount:
+  ansible.posix.mount:
     path: /mnt/disk2
     src: UUID=d49dac75-4d28-4c56-b2d2-606b3271b9b5
     fstype: ext4
     opts: defaults
     state: present
     
-ansible.posix.mount:
+  ansible.posix.mount:
     path: /mnt/disk3
     src: UUID=a500d06c-9878-4db3-9873-d0ee7f07dfc0
     fstype: ext4
     opts: defaults
     state: present
 
-ansible.posix.mount:
+  ansible.posix.mount:
     path: /mnt/disk4
     src: UUID=f11eeedc-60aa-4567-948a-c19ff0ccf337
     fstype: ext4
     opts: defaults
     state: present
 
-ansible.posix.mount:
+  ansible.posix.mount:
     path: /mnt/disk5
     src: UUID=6259f43a-96b5-4894-badf-4c18a85b3897
     fstype: ext4
     opts: defaults
     state: present
 
-ansible.posix.mount:
+  ansible.posix.mount:
     path: /mnt/disk6
     src: UUID=903A27FB3A27DD4A
     fstype: ntfs
