@@ -87,12 +87,14 @@
     opts: defaults
     state: present
 
-- name: Packages - set up MergerFS
+- name: Packages - install MergerFS
   apt:
     name: [
      'mergerfs',
     ]
     state: latest
+
+- name: Fstab for MergerFS
   ansible.posix.mount:
     path: /mnt/fusion
     src: /mnt/disk*
