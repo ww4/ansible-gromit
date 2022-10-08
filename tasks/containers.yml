@@ -4,9 +4,9 @@
       name: jellyfin
       state: started
       env:
-        - PUID: 1000
-        - PGID: 1000
-        - TZ: America/New_York
+        - PUID: "1000"
+        - PGID: "1000"
+        - TZ: "America/New_York"
       volumes:
         - /mnt/fusion/config: /config
         - /mnt/fusion/Movies: /data/movies
