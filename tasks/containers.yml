@@ -1,6 +1,6 @@
   - name: Containers - Jellyfin
     docker_container:
-      image:lscr.io/linuxserver/jellyfin:latest
+      image: lscr.io/linuxserver/jellyfin:latest
       name: jellyfin
       state: started
       env:
