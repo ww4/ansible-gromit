@@ -30,19 +30,74 @@
     ]
     state: latest
 
-- name: Packages - set up MergerFS
-  apt:
-    name: [
-     'mergerfs',
-    ]
-    state: latest
+- name: Mountpoints, fstab for disks
   file:
     path: /mnt/
     state: directory
     mode: 0755
     with_items:
       - fusion
-      - drive01
+      - disk1
+      - disk2
+      - disk3
+      - disk4
+      - disk5
+      - disk6
+
+  ansible.posix.mount:
+    path: /mnt/disk1
+    src: UUID=4731e760-fe51-48ef-8e35-5b764b84c249
+    fstype: ext4
+    opts: defaults
+    state: present
+
+ansible.posix.mount:
+    path: /mnt/disk2
+    src: UUID=d49dac75-4d28-4c56-b2d2-606b3271b9b5
+    fstype: ext4
+    opts: defaults
+    state: present
+    
+ansible.posix.mount:
+    path: /mnt/disk3
+    src: UUID=a500d06c-9878-4db3-9873-d0ee7f07dfc0
+    fstype: ext4
+    opts: defaults
+    state: present
+
+ansible.posix.mount:
+    path: /mnt/disk4
+    src: UUID=f11eeedc-60aa-4567-948a-c19ff0ccf337
+    fstype: ext4
+    opts: defaults
+    state: present
+
+ansible.posix.mount:
+    path: /mnt/disk5
+    src: UUID=6259f43a-96b5-4894-badf-4c18a85b3897
+    fstype: ext4
+    opts: defaults
+    state: present
+
+ansible.posix.mount:
+    path: /mnt/disk6
+    src: UUID=903A27FB3A27DD4A
+    fstype: ntfs
+    opts: defaults
+    state: present
+
+- name: Packages - set up MergerFS
+  apt:
+    name: [
+     'mergerfs',
+    ]
+    state: latest
+  ansible.posix.mount:
+    path: /mnt/fusion
+    src: /mnt/disk*
+    fstype: fuse.mergerfs
+    opts: defaults,category.create=mfs,nonempty,allow_other,use_ino,cache.files=off,moveonenospc=true,dropcacheonclose=true,minfreespace=200G,fsname=mergerfs
+    state: present
 
 
 name: Packages - set up Restic
