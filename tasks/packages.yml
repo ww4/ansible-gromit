@@ -38,6 +38,7 @@
     group: chris
     mode: 0775
   loop:
+      - /home/chris/jellyfin/
       - /mnt/fusion
       - /mnt/disk1
       - /mnt/disk2
