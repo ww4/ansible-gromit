@@ -11,9 +11,20 @@
         - /home/chris/jellyfin/config:/config
         - /mnt/fusion/Movies:/data/movies
         - /mnt/fusion/TV_Shows:/data/tvshows
+        - /mnt/fusion/Music:/data/music
       ports:
         - "8096:8096"
         - "8920:8920"
         - "7359:7359"
         - "1900:1900"
       restart_policy: unless-stopped
+
+#      - name: Containers - Tandoor
+#        docker_container:
+#          image:
+#          name:
+#          state:
+#          env:
+#          volumes:
+#          ports:
+#          restart_policy: unless-stopped

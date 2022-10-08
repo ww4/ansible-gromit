@@ -15,6 +15,11 @@
      'conky',
     ]
     state: latest
+- name: Packages - Snaps
+  snap:
+    name: [
+      'code'
+    ]
 
 - name: Packages - CLI apps
   apt:
