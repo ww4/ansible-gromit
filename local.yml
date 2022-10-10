@@ -7,8 +7,7 @@
         state: present
     - name: add Tailscale repository
       apt_repository:
-        repo: https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list
-        filename: tailscale
+        repo: deb https://pkgs.tailscale.com/stable/{{ ansible_distribution|lower }} {{ ansible_distribution_release|lower }} main"
         state: present
     - name: update repositories
       apt: update_cache=yes
