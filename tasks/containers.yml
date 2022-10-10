@@ -10,7 +10,7 @@
       volumes:
         - /home/chris/jellyfin/config:/config
         - /mnt/fusion/Movies:/data/movies
-        - /mnt/fusion/TV_Shows:/data/tvshows
+        - /mnt/fusion/TV Shows:/data/tvshows
         - /mnt/fusion/Music:/data/music
       ports:
         - "8096:8096"
