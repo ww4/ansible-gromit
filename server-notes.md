@@ -55,3 +55,5 @@ This looks useful. https://www.digitalocean.com/community/tutorials/how-to-use-a
 
 following above tutorial, added docker.yml to tasks
 Set up Jellyfin docker, need to set up filesystem before testing
+Added filesystem to ansible
+Replicating system on Virtualbox; need to add Tailscale to Ansible
