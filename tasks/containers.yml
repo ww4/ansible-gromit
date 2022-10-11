@@ -47,6 +47,10 @@
         PUID: "1000"
         PGID: "1000"
         TZ: "America/New_York"
+        MYSQL_PASSWORD: nextclouddbpassword
+        MYSQL_DATABASE: nextcloud-db
+        MYSQL_USER: nextcloud
+        MYSQL_HOST: mariadb
       volumes:
         - /home/chris/nextcloud/config:/config
         - /mnt/fusion/nextcloud:/data
