@@ -19,6 +19,25 @@
         - "1900:1900"
       restart_policy: unless-stopped
 
+  - name: Containers - MariaDB (for Nextcloud)
+    docker_container:
+      image: lscr.io/linuxserver/mariadb:latest
+      name: mariadb
+      state: started
+      env:
+        PUID: "1000"
+        PGID: "1000"
+        TZ: "America/New_York"
+        MYSQL_ROOT_PASSWORD: mariadbpassword #change this to vault at some point
+        MYSQL_DATABASE: nextcloud-db
+        MYSQL_USER: nextcloud
+        MYSQL_PASSWORD: nextclouddbpassword #change this to vault at some point
+      volumes:
+        - /home/chris/mariadb/config:/config
+      ports:
+        - 3306:3306
+      restart_policy: unless-stopped
+
   - name: Containers - Nextcloud
     docker_container:
       image: lscr.io/linuxserver/nextcloud:latest
