@@ -33,7 +33,7 @@
         - /mnt/fusion/nextcloud:/data
       ports:
         - 443:443
-    restart_policy: unless-stopped
+      restart_policy: unless-stopped
 
 #      - name: Containers - Tandoor
 #        docker_container:
