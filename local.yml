@@ -1,14 +1,14 @@
 - hosts: localhost
   become: true
   pre_tasks:
-    - name: add Tailscale GPG key
-      apt_key:
-        url: https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg
-        state: present
-    - name: add Tailscale repository
-      apt_repository:
-        repo: deb https://pkgs.tailscale.com/stable/ubuntu/jammy/main"
-        state: present
+#    - name: add Tailscale GPG key
+#      apt_key:
+#        url: https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg
+#        state: present
+#   - name: add Tailscale repository
+#      apt_repository:
+#        repo: deb https://pkgs.tailscale.com/stable/ubuntu/jammy/main"
+#        state: present
     - name: update repositories
       apt: update_cache=yes
       changed_when: False

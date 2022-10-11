@@ -4,9 +4,9 @@
       name: jellyfin
       state: started
       env:
-          PUID: "1000"
-          PGID: "1000"
-          TZ: "America/New_York"
+        PUID: "1000"
+        PGID: "1000"
+        TZ: "America/New_York"
       volumes:
         - /home/chris/jellyfin/config:/config
         - /mnt/fusion/Movies:/data/movies
@@ -18,6 +18,22 @@
         - "7359:7359"
         - "1900:1900"
       restart_policy: unless-stopped
+
+  - name: Containers - Nextcloud
+    docker_container:
+      image: lscr.io/linuxserver/nextcloud:latest
+      name: nextcloud
+      state: started
+      env:
+        PUID: "1000"
+        PGID: "1000"
+        TZ: "America/New_York"
+      volumes:
+        - /home/chris/nextcloud/config:/config
+        - /mnt/fusion/nextcloud:/data
+      ports:
+        - 443:443
+    restart_policy: unless-stopped
 
 #      - name: Containers - Tandoor
 #        docker_container:
