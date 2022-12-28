@@ -8,19 +8,95 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Include Nextcloud config
+      ./nextcloud.nix
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
+  # If no user is logged in, the machine will power down after 20 minutes.
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
+  services.xserver.displayManager.gdm.autoSuspend = false;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.login1.suspend" ||
+            action.id == "org.freedesktop.login1.suspend-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.hibernate" ||
+            action.id == "org.freedesktop.login1.hibernate-multiple-sessions")
+        {
+            return polkit.Result.NO;
+        }
+    });
+  '';
+
+# FILESYSTEMS
+
+  fileSystems = {
+  # Physical drives
+      "/mnt/mergerD1" = { 
+        device = "/dev/disk/by-uuid/4731e760-fe51-48ef-8e35-5b764b84c249";
+        fsType = "ext4";
+      };
+
+      "/mnt/mergerD2" = {
+        device = "/dev/disk/by-uuid/d49dac75-4d28-4c56-b2d2-606b3271b9b5";
+        fsType = "ext4";
+      };
+
+      "/mnt/mergerD3" = {
+        device = "/dev/disk/by-uuid/a500d06c-9878-4db3-9873-d0ee7f07dfc0";
+        fsType = "ext4";
+      };
+
+      "/mnt/mergerD4" = {
+        device = "/dev/disk/by-uuid/f11eeedc-60aa-4567-948a-c19ff0ccf337";
+        fsType = "ext4";
+      };
+
+      "/home/chris" = {
+        device = "/dev/disk/by-uuid/56c90b01-5f1e-4058-a2c4-c3db4df4deef";
+        fsType = "ext4";
+      };
+  
+  # mergerfs: merge drives
+  
+    "/mnt/fusion" = {
+      device = "/mnt/mergerD1:/mnt/mergerD4";
+      fsType = "fuse.mergerfs";
+      options = [
+        "defaults"
+        "allow_other"
+        "use_ino"
+        "cache.files=off"
+        "moveonenospc=true"
+        "dropcacheonclose=true"
+        "category.create=mfs"
+        "nofail"
+      ];
+    };  
+  };
+
+  networking.hostName = "gromit"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+ # Enable Tailscale
+  services.tailscale.enable = true;
+  networking.firewall.checkReversePath = "loose";
 
   # Open firewall
   networking.firewall = {
@@ -31,12 +107,6 @@
     { from = 8000; to = 8300; }
   ];
 };
-  # Enable networking
-  networking.networkmanager.enable = true;
-  
-  # Enable Tailscale
-  services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -56,11 +126,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Jellyfin
-  services.jellyfin.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -69,6 +137,8 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    xkbOptions = "caps:super";
+
   };
 
   # Enable CUPS to print documents.
@@ -97,7 +167,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chris = {
     isNormalUser = true;
-    description = "Chris";
+    description = "chris";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
@@ -105,32 +175,40 @@
     ];
   };
 
+  # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "chris";
+
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  # $ nix search wget 
+ environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  google-chrome
-  vscode
-  teams
-  logseq
-  bitwarden
-  element-desktop
-  byobu
-  tmux
-  htop
-  git
-  mergerfs
-  tailscale
-  jellyfin
-  nextcloud25
-  tandoor-recipes
-  prometheus
-  grafana
+     google-chrome
+     vscode
+     teams
+     logseq
+     bitwarden
+     element-desktop
+     byobu
+     tmux
+     htop
+     git
+     mergerfs
+     tailscale
+    #jellyfin
+     tandoor-recipes
+     prometheus
+     grafana
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -140,10 +218,20 @@
   #   enableSSHSupport = true;
   # };
 
+  # Steam
+  programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+};
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+# Jellyfin
+  services.jellyfin.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -159,7 +247,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
-  # CMS additions:
-  # Enable Flatpaks:
-  # services.flatpak.enable = true;  
 }

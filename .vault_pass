@@ -1,0 +1,4 @@
+#!/bin/bash
+#fetch Ansible vault password from Bitwarden
+
+bw get password ansible-gromit
