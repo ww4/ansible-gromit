@@ -1,3 +1,5 @@
+#### *Note: This repo is historical, I am now developing a NixOS flake setup for this same task. See the "flakes" repo.*
+
 ### Plex Media Server playbook:
 
 #### Vault & Bitwarden:
